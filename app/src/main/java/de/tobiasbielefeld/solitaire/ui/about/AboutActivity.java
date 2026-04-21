@@ -19,11 +19,12 @@
 package de.tobiasbielefeld.solitaire.ui.about;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
+import androidx.appcompat.app.ActionBar;
 import android.view.MenuItem;
 
-import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.viewpager2.widget.ViewPager2;
 
 import de.tobiasbielefeld.solitaire.R;
 import de.tobiasbielefeld.solitaire.classes.CustomAppCompatActivity;
@@ -46,12 +47,14 @@ public class AboutActivity extends CustomAppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        PagerSlidingTabStrip tabs = findViewById(R.id.tabs);
-        ViewPager pager = findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
+        TabLayout tabs = findViewById(R.id.tabs);
+        ViewPager2 pager = findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(this);
 
         pager.setAdapter(adapter);
-        tabs.setViewPager(pager);
+        new TabLayoutMediator(tabs, pager,
+                (tab, position) -> tab.setText(adapter.getPageTitle(position))
+        ).attach();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

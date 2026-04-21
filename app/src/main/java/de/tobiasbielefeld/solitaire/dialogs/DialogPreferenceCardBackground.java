@@ -64,7 +64,7 @@ public class DialogPreferenceCardBackground extends CustomDialogPreference imple
 
         this.context = context;
 
-        context.getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);
+        context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, typedValue, true);
     }
 
     @Override
@@ -104,49 +104,34 @@ public class DialogPreferenceCardBackground extends CustomDialogPreference imple
 
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.settingsCardBackground0:
-                selectedBackground = 0;
-                break;
-            case R.id.settingsCardBackground1:
-                selectedBackground = 1;
-                break;
-            case R.id.settingsCardBackground2:
-                selectedBackground = 2;
-                break;
-            case R.id.settingsCardBackground3:
-                selectedBackground = 3;
-                break;
-            case R.id.settingsCardBackground4:
-                selectedBackground = 4;
-                break;
-            case R.id.settingsCardBackground5:
-                selectedBackground = 5;
-                break;
-            case R.id.settingsCardBackground6:
-                selectedBackground = 6;
-                break;
-            case R.id.settingsCardBackground7:
-                selectedBackground = 7;
-                break;
-            case R.id.settingsCardBackground8:
-                selectedBackground = 8;
-                break;
-            case R.id.settingsCardBackground9:
-                selectedBackground = 9;
-                break;
-            case R.id.dialogBackgroundsCardsBlue:
-                selectedBackgroundColor = 0;
-                break;
-            case R.id.dialogBackgroundsCardsRed:
-                selectedBackgroundColor = 1;
-                break;
-            case R.id.dialogBackgroundsCardsGreen:
-                selectedBackgroundColor = 2;
-                break;
-            case R.id.dialogBackgroundsCardsYellow:
-                selectedBackgroundColor = 3;
-                break;
+        if (v.getId() == R.id.settingsCardBackground0) {
+            selectedBackground = 0;
+        } else if (v.getId() == R.id.settingsCardBackground1) {
+            selectedBackground = 1;
+        } else if (v.getId() == R.id.settingsCardBackground2) {
+            selectedBackground = 2;
+        } else if (v.getId() == R.id.settingsCardBackground3) {
+            selectedBackground = 3;
+        } else if (v.getId() == R.id.settingsCardBackground4) {
+            selectedBackground = 4;
+        } else if (v.getId() == R.id.settingsCardBackground5) {
+            selectedBackground = 5;
+        } else if (v.getId() == R.id.settingsCardBackground6) {
+            selectedBackground = 6;
+        } else if (v.getId() == R.id.settingsCardBackground7) {
+            selectedBackground = 7;
+        } else if (v.getId() == R.id.settingsCardBackground8) {
+            selectedBackground = 8;
+        } else if (v.getId() == R.id.settingsCardBackground9) {
+            selectedBackground = 9;
+        } else if (v.getId() == R.id.dialogBackgroundsCardsBlue) {
+            selectedBackgroundColor = 0;
+        } else if (v.getId() == R.id.dialogBackgroundsCardsRed) {
+            selectedBackgroundColor = 1;
+        } else if (v.getId() == R.id.dialogBackgroundsCardsGreen) {
+            selectedBackgroundColor = 2;
+        } else if (v.getId() == R.id.dialogBackgroundsCardsYellow) {
+            selectedBackgroundColor = 3;
         }
 
         updateDialog();

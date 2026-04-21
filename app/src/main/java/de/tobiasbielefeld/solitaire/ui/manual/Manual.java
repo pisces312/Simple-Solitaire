@@ -19,14 +19,14 @@
 package de.tobiasbielefeld.solitaire.ui.manual;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -185,28 +185,20 @@ public class Manual extends CustomAppCompatActivity
         }
 
         int id = item.getItemId();
-        Class fragmentClass;
+        Class fragmentClass = ManualStartPage.class;
 
-        switch (id) {
-            case R.id.nav_startpage:
-            default:
-                fragmentClass = ManualStartPage.class;
-                break;
-            case R.id.nav_menu:
-                fragmentClass = ManualMenu.class;
-                break;
-            case R.id.nav_user_interface:
-                fragmentClass = ManualUserInterface.class;
-                break;
-            case R.id.nav_games:
-                fragmentClass = ManualGames.class;
-                break;
-            case R.id.nav_statistics:
-                fragmentClass = ManualStatistics.class;
-                break;
-            case R.id.nav_feedback:
-                fragmentClass = ManualFeedback.class;
-                break;
+        if (id == R.id.nav_startpage) {
+            fragmentClass = ManualStartPage.class;
+        } else if (id == R.id.nav_menu) {
+            fragmentClass = ManualMenu.class;
+        } else if (id == R.id.nav_user_interface) {
+            fragmentClass = ManualUserInterface.class;
+        } else if (id == R.id.nav_games) {
+            fragmentClass = ManualGames.class;
+        } else if (id == R.id.nav_statistics) {
+            fragmentClass = ManualStatistics.class;
+        } else if (id == R.id.nav_feedback) {
+            fragmentClass = ManualFeedback.class;
         }
 
         loadFragment(fragmentClass);

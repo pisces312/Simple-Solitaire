@@ -19,36 +19,38 @@
 package de.tobiasbielefeld.solitaire.ui.about;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import de.tobiasbielefeld.solitaire.R;
 
 /**
- * Adapter for the tabs
+ * Adapter for the tabs (ViewPager2 version)
  */
 
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+public class TabsPagerAdapter extends FragmentStateAdapter {
 
     private final String[] TITLES;
 
-    TabsPagerAdapter(FragmentManager fm, Context context) {
-        super(fm);
-        TITLES = new String[]{context.getString(R.string.about_tab_1), context.getString(R.string.about_tab_2), context.getString(R.string.about_tab_3)};
+    TabsPagerAdapter(FragmentActivity activity) {
+        super(activity);
+        TITLES = new String[]{activity.getString(R.string.about_tab_1), activity.getString(R.string.about_tab_2), activity.getString(R.string.about_tab_3)};
     }
 
-    @Override
     public CharSequence getPageTitle(int position) {
         return TITLES[position];
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return TITLES.length;
     }
 
+    @NonNull
     @Override
-    public android.support.v4.app.Fragment getItem(int index) {
+    public Fragment createFragment(int index) {
         switch (index) {
             case 0:
                 return new InformationFragment();
@@ -57,8 +59,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new ChangeLogFragment();
         }
-
-        return null;
+        return new InformationFragment();
     }
-
 }

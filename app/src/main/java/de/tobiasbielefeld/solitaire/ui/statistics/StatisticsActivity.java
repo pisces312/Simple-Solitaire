@@ -19,13 +19,14 @@
 package de.tobiasbielefeld.solitaire.ui.statistics;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.ActionBar;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.viewpager2.widget.ViewPager2;
 
 import de.tobiasbielefeld.solitaire.R;
 import de.tobiasbielefeld.solitaire.classes.CustomAppCompatActivity;
@@ -48,14 +49,16 @@ public class StatisticsActivity extends CustomAppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        PagerSlidingTabStrip tabs = findViewById(R.id.tabs);
-        tabs.setAllCaps(false);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setTabMode(TabLayout.MODE_FIXED);
 
-        ViewPager pager = findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager(), this);
+        ViewPager2 pager = findViewById(R.id.pager);
+        TabsPagerAdapter adapter = new TabsPagerAdapter(this);
 
         pager.setAdapter(adapter);
-        tabs.setViewPager(pager);
+        new TabLayoutMediator(tabs, pager,
+                (tab, position) -> tab.setText(adapter.getPageTitle(position))
+        ).attach();
     }
 
     @Override
@@ -68,22 +71,16 @@ public class StatisticsActivity extends CustomAppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_delete:
-                DialogFragment deleteDialog = new DialogHighScoreDelete();
-                deleteDialog.show(getSupportFragmentManager(), "high_score_delete");
-                break;
-            case R.id.item_hide:
-                boolean checked = !prefs.getSavedStatisticsHideWinPercentage();
+        if (item.getItemId() == R.id.item_delete) {
+            DialogFragment deleteDialog = new DialogHighScoreDelete();
+            deleteDialog.show(getSupportFragmentManager(), "high_score_delete");
+        } else if (item.getItemId() == R.id.item_hide) {
+            boolean checked = !prefs.getSavedStatisticsHideWinPercentage();
 
-                prefs.saveStatisticsHideWinPercentage(checked);
-                item.setChecked(checked);
-                callback.sendNewState(checked);
+            prefs.saveStatisticsHideWinPercentage(checked);
+            item.setChecked(checked);
+            callback.sendNewState(checked);
 
-                break;
-            case android.R.id.home:
-                finish();
-                break;
         }
 
         return true;

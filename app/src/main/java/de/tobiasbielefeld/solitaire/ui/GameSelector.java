@@ -5,12 +5,12 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -83,19 +83,14 @@ public class GameSelector extends CustomAppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
-            case R.id.item_settings:
-                startActivity(new Intent(getApplicationContext(), Settings.class));
-                break;
-            case R.id.item_manual:
-                startActivity(new Intent(getApplicationContext(), Manual.class));
-                break;
-            case R.id.item_about:
-                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
-                break;
-            case R.id.item_close:
-                finish();
-                break;
+        if (item.getItemId() == R.id.item_settings) {
+            startActivity(new Intent(getApplicationContext(), Settings.class));
+        } else if (item.getItemId() == R.id.item_manual) {
+            startActivity(new Intent(getApplicationContext(), Manual.class));
+        } else if (item.getItemId() == R.id.item_about) {
+            startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+        } else if (item.getItemId() == R.id.item_close) {
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

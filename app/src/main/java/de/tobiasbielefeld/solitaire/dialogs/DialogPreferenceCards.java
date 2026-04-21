@@ -77,40 +77,28 @@ public class DialogPreferenceCards extends CustomDialogPreference implements Vie
     }
 
     public void onClick(View v) {
-        int choice;
+        int choice = 0;
 
-        switch (v.getId()) {
-            case R.id.settingsLinearLayoutCardsBasic:
-            default:
-                choice = 1;
-                break;
-            case R.id.settingsLinearLayoutCardsClassic:
-                choice = 2;
-                break;
-            case R.id.settingsLinearLayoutCardsAbstract:
-                choice = 3;
-                break;
-            case R.id.settingsLinearLayoutCardsSimple:
-                choice = 4;
-                break;
-            case R.id.settingsLinearLayoutCardsModern:
-                choice = 5;
-                break;
-            case R.id.settingsLinearLayoutCardsOxygenDark:
-                choice = 6;
-                break;
-            case R.id.settingsLinearLayoutCardsOxygenLight:
-                choice = 7;
-                break;
-            case R.id.settingsLinearLayoutCardsPoker:
-                choice = 8;
-                break;
-            case R.id.settingsLinearLayoutCardsParis:
-                choice = 9;
-                break;
-            case R.id.settingsLinearLayoutCardsDondorf:
-                choice = 10;
-                break;
+        if (v.getId() == R.id.settingsLinearLayoutCardsBasic) {
+            choice = 0;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsClassic) {
+            choice = 2;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsAbstract) {
+            choice = 3;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsSimple) {
+            choice = 4;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsModern) {
+            choice = 5;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsOxygenDark) {
+            choice = 6;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsOxygenLight) {
+            choice = 7;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsPoker) {
+            choice = 8;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsParis) {
+            choice = 9;
+        } else if (v.getId() == R.id.settingsLinearLayoutCardsDondorf) {
+            choice = 10;
         }
 
         prefs.saveCardTheme(choice);

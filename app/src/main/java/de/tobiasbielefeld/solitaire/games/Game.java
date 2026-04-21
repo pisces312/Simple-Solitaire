@@ -20,8 +20,8 @@ package de.tobiasbielefeld.solitaire.games;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.CallSuper;
-import android.support.v4.widget.TextViewCompat;
+import androidx.annotation.CallSuper;
+import androidx.core.widget.TextViewCompat;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -538,7 +538,7 @@ public abstract class Game {
         for (int i = 0; i < count; i++) {
             TextView textView = new TextView(context);
             textView.setWidth(width);
-            TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat);
+            TextViewCompat.setTextAppearance(textView, com.google.android.material.R.style.TextAppearance_AppCompat);
             textView.setGravity(Gravity.CENTER);
             textView.setTextColor(textViewColor);
             layout.addView(textView);
